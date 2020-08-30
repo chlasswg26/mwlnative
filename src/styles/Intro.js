@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Responsive from 'react-native-lightweight-responsive';
 
 export const styles = StyleSheet.create({
   slide: {
@@ -8,8 +9,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#ff3034',
   },
   image: {
-    width: 320,
-    height: 320,
+    width: Responsive.width(320),
+    height: Responsive.height(320),
     marginVertical: 32,
   },
   text: {
@@ -17,13 +18,13 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 22,
+    fontSize: Responsive.font(22),
     color: 'white',
     textAlign: 'center',
   },
   buttonCircle: {
-    width: 44,
-    height: 44,
+    width: Responsive.width(44),
+    height: Responsive.height(44),
     backgroundColor: 'rgba(0, 0, 0, .2)',
     borderRadius: 22,
     justifyContent: 'center',

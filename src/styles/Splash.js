@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Responsive from 'react-native-lightweight-responsive';
 
 export const styles = StyleSheet.create({
   viewStyles: {
@@ -7,11 +8,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textStyles: {
-    fontSize: 40,
+    fontSize: Responsive.font(40),
     fontWeight: 'bold',
   },
   image: {
-    width: 100,
-    height: 100,
+    width: Responsive.width(100),
+    height: Responsive.height(100),
   },
 });

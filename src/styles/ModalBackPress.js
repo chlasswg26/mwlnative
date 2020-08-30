@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Responsive from 'react-native-lightweight-responsive';
 
 export const styles = StyleSheet.create({
     backdrop: {
@@ -6,7 +7,7 @@ export const styles = StyleSheet.create({
     },
     text: {
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: Responsive.font(16),
         marginBottom: 35,
     },
     view: {

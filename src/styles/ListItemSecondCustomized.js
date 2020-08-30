@@ -1,0 +1,44 @@
+import { StyleSheet } from "react-native";
+import Responsive from "react-native-lightweight-responsive";
+
+export const styles = StyleSheet.create({
+    listItemTitle: {
+        marginBottom: 50,
+        fontWeight: 'bold',
+        left: 10,
+        marginRight: 5,
+        fontSize: Responsive.font(15),
+        fontStyle: 'italic',
+        textTransform: 'capitalize',
+    },
+    listItem: {
+        backgroundColor: 'transparent',
+        width: Responsive.height(350),
+        height: Responsive.height(200),
+    },
+    listItemDescription: {
+        bottom: 35,
+        left: 15,
+        marginRight: 10,
+        textTransform: 'lowercase',
+    },
+    listItemButton: {
+        bottom: 15,
+        marginLeft: 20,
+        width: Responsive.width(60),
+        height: Responsive.height(60),
+        borderRadius: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
+    },
+    listItemAccessoryLeft: {
+        width: Responsive.width(120),
+        height: Responsive.height(190),
+    },
+    listItemAccessoryImage: {
+        resizeMode: 'cover',
+        borderRadius: 5,
+    },
+});

@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, Fragment } from 'react';
 import {
     DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import { ImageBackground } from 'react-native';
+import { ImageBackground, TouchableHighlight } from 'react-native';
 import {
   Toggle,
   Icon,
@@ -17,6 +17,7 @@ import { styles } from '../styles/DrawerContent';
 import { ThemeContext } from '../context/theme-context';
 import AsyncStorage from '@react-native-community/async-storage';
 import ModalLoading from './ModalLoading';
+import { useNavigation } from '@react-navigation/native';
 
 const LogoutIcon = (props) => {
     return <Icon {...props} name='log-out-outline' />;
@@ -41,6 +42,7 @@ const CloseIcon = (props) => {
 };
 
 export const DrawerContent = (props) => {
+    const navigation = useNavigation();
     const themeContext = useContext(ThemeContext);
     const [megaState, setMegaState] = useState({
         toggle: false,
@@ -174,88 +176,116 @@ export const DrawerContent = (props) => {
     };
 
     return (
-        <Fragment>
-            { showModal ? (
-                <ModalLoading isVisible={showModal} type={caption} />
-            ) : (!showModal && (
-                <ModalLoading isVisible={showModal} type={caption} />
-            )) }
+      <Fragment>
+        {showModal ? (
+          <ModalLoading isVisible={showModal} type={caption} />
+        ) : (
+          !showModal && <ModalLoading isVisible={showModal} type={caption} />
+        )}
+        <Layout style={styles.drawerContent}>
+          <DrawerContentScrollView {...props}>
             <Layout style={styles.drawerContent}>
-                <DrawerContentScrollView {...props}>
-                    <Layout style={styles.drawerContent}>
-                        <Layout style={styles.userInfoSection}>
-                            <TopNavigation
-                                title={evaProps => <Text {...evaProps} style={styles.textLogo}>MWLibrary</Text>}
-                                accessoryLeft={SiteLogo}
-                                accessoryRight={CloseDrawerButton}
-                            />
-                            <Layout style={styles.avatarLayout}>
-                                <Avatar
-                                    source={{
-                                        uri: `https://ui-avatars.com/api/?background=57A2FF&color=000&name=Guest`
-                                    }}
-                                    ImageComponent={ImageBackground}
-                                    size='giant'
-                                />
-                                <Layout style={styles.captionLayout}>
-                                    <Text
-                                        appearance='default'
-                                        style={styles.title}>
-                                        Ichlas Wardy Gustama
-                                    </Text>
-                                    <Text
-                                        appearance='hint'
-                                        style={styles.caption}>
-                                        Pengguna
-                                    </Text>
-                                </Layout>
-                            </Layout>
-
-                            <Layout style={styles.row}>
-                                <Layout style={styles.section}>
-                                    <Text
-                                        appearance='default'
-                                        style={[styles.paragraph, styles.caption]}>
-                                            1
-                                    </Text>
-                                    <Text
-                                        appearance='hint'
-                                        style={styles.caption}>
-                                            Buku sedang dipinjam
-                                    </Text>
-                                </Layout>
-                            </Layout>
-                        </Layout>
-
-                        <Layout style={styles.drawerLayoutItem}>
-                            <DrawerItem title='Beranda' accessoryLeft={HomeIcon} style={styles.drawerNested} />
-                            <DrawerItem title='Buku Saya' accessoryLeft={BookIcon} style={styles.drawerNested} />
-                            <DrawerItem title='Riwayat Aksi' accessoryLeft={HistoryIcon} style={styles.drawerNested} />
-                        </Layout>
-
-                        <Layout style={styles.preferenceLabel}>
-                            <Layout style={styles.preference}>
-                                <Text
-                                    appearance='hint'
-                                    category='p1'>
-                                        Preferensi
-                                </Text>
-                            </Layout>
-                            <DrawerItem
-                                title={toggle ? 'Mode Gelap' : (!toggle && 'Mode Terang')}
-                                accessoryLeft={toggle ? MoonIcon : (!toggle && SunIcon)}
-                                accessoryRight={ToggleMenu}
-                            />
-                        </Layout>
-                    </Layout>
-                </DrawerContentScrollView>
-
-                <DrawerItem
-                    title='Keluar'
-                    accessoryLeft={LogoutIcon}
-                    style={styles.bottomDrawerSection}
+              <Layout style={styles.userInfoSection}>
+                <TopNavigation
+                  title={(evaProps) => (
+                    <Text {...evaProps} style={styles.textLogo}>
+                      MWLibrary
+                    </Text>
+                  )}
+                  accessoryLeft={SiteLogo}
+                  accessoryRight={CloseDrawerButton}
                 />
+                <Layout style={styles.avatarLayout}>
+                  <TouchableHighlight
+                    activeOpacity={0.3}
+                    underlayColor="transparent"
+                    onPress={() => navigation.navigate('Profile')}>
+                    <Avatar
+                      source={{
+                        uri:
+                          'https://api.adorable.io/avatars/285' +
+                          'abott@adorable.io' +
+                          '.png',
+                      }}
+                      ImageComponent={ImageBackground}
+                      size="giant"
+                    />
+                  </TouchableHighlight>
+                  <Layout style={styles.captionLayout}>
+                    <TouchableHighlight
+                      activeOpacity={0.3}
+                      underlayColor="transparent"
+                      onPress={() => navigation.navigate('Profile')}>
+                      <Text
+                        appearance="default"
+                        numberOfLines={1}
+                        style={styles.title}>
+                        Ichlas Wardy Gustama
+                      </Text>
+                    </TouchableHighlight>
+                    <Text appearance="hint" style={styles.caption}>
+                      Pengguna
+                    </Text>
+                  </Layout>
+                </Layout>
+
+                <Layout style={styles.row}>
+                  <Layout style={styles.section}>
+                    <Text
+                      appearance="default"
+                      style={[styles.paragraph, styles.caption]}>
+                      1
+                    </Text>
+                    <Text appearance="hint" style={styles.caption}>
+                      Buku sedang dipinjam
+                    </Text>
+                  </Layout>
+                </Layout>
+              </Layout>
+
+              <Layout style={styles.drawerLayoutItem}>
+                <DrawerItem
+                  title="Beranda"
+                  accessoryLeft={HomeIcon}
+                  style={styles.drawerNested}
+                  onPress={() => props.navigation.navigate('Dashboard')}
+                />
+                <DrawerItem
+                  title="Buku Saya"
+                  accessoryLeft={BookIcon}
+                  style={styles.drawerNested}
+                  onPress={() => props.navigation.navigate('Book')}
+                />
+                <DrawerItem
+                  title="Riwayat Aksi"
+                  accessoryLeft={HistoryIcon}
+                  style={styles.drawerNested}
+                  onPress={() => navigation.navigate('History')}
+                />
+              </Layout>
+
+              <Layout>
+                <Layout style={styles.preference}>
+                  <Text appearance="hint" category="p1">
+                    Preferensi
+                  </Text>
+                </Layout>
+                <DrawerItem
+                  title={toggle ? 'Mode Gelap' : !toggle && 'Mode Terang'}
+                  accessoryLeft={toggle ? MoonIcon : !toggle && SunIcon}
+                  accessoryRight={ToggleMenu}
+                />
+              </Layout>
             </Layout>
-        </Fragment>
+          </DrawerContentScrollView>
+
+          <DrawerItem
+            title="Keluar"
+            accessoryLeft={LogoutIcon}
+            style={styles.bottomDrawerSection}
+            onPress={() => props.navigation.navigate('Login')}
+          />
+        </Layout>
+      </Fragment>
     );
 };

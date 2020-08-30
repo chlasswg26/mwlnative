@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Responsive from 'react-native-lightweight-responsive';
 
 export const styles = StyleSheet.create({
     backdrop: {
@@ -13,8 +14,8 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     loadingWrapper: {
-        height: 150,
-        width: 150,
+        height: Responsive.height(150),
+        width: Responsive.width(150),
         borderRadius: 15,
         display: 'flex',
         alignItems: 'center',
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
     loadingText: {
         marginTop: -50,
         marginBottom: -10,
-        fontSize: 12,
+        fontSize: Responsive.font(12),
         fontWeight: 'bold',
     },
 });

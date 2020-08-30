@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
+import Responsive from 'react-native-lightweight-responsive';
 
 export const styles = StyleSheet.create({
     drawerContent: {
         flex: 1,
     },
     textLogo: {
-        fontSize: 20,
+        fontSize: Responsive.font(20),
         fontWeight: 'bold',
     },
     avatarLayout: {
@@ -27,12 +28,13 @@ export const styles = StyleSheet.create({
         paddingLeft: 20,
     },
     title: {
-        fontSize: 16,
+        fontSize: Responsive.font(16),
         marginTop: 3,
+        marginBottom: 10,
         fontWeight: 'bold',
     },
     caption: {
-        fontSize: 14,
+        fontSize: Responsive.font(14),
         lineHeight: 14,
     },
     row: {

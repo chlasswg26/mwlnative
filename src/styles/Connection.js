@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Responsive from 'react-native-lightweight-responsive';
 
 export const styles = StyleSheet.create({
   viewStyles: {
@@ -7,7 +8,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textStyles: {
-    fontSize: 20,
+    fontSize: Responsive.font(20),
     fontWeight: 'bold',
   },
 });
