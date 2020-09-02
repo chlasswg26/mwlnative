@@ -1,21 +1,18 @@
 import React, {Fragment, useState} from 'react';
-import {KeyboardAvoidingView, Alert} from 'react-native';
+import {KeyboardAvoidingView} from 'react-native';
 import {
   Layout,
   Text,
   Input,
   Icon,
   Button,
-//   Avatar,
 } from '@ui-kitten/components';
 import {styles} from '../../styles/Register';
 import {ScrollView} from 'react-native-gesture-handler';
-// import DocumentPicker from 'react-native-document-picker';
 import { useNavigation } from '@react-navigation/native';
 
 const UserIcon = (props) => <Icon {...props} name="person" />;
 const EyeIcon = (props) => <Icon {...props} name="eye" />;
-// const PlusIcon = (props) => <Icon {...props} name="plus" />;
 const EmailIcon = (props) => <Icon {...props} name="email" />;
 const RepeatIcon = (props) => <Icon {...props} name="repeat" />;
 
@@ -25,34 +22,6 @@ const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
-//   const [uri, setUri] = useState();
-
-//   const selectFile = async () => {
-//       try {
-//           const response = await DocumentPicker.pick({
-//               type: [DocumentPicker.types.images],
-//           });
-//           if (response.type) {
-//             setUri(response.uri);
-//           } else {
-//               Alert.alert(
-//                   'Peringatan!',
-//                   'Hanya gambar yang dapat diunggah.',
-//                   ['OKE'],
-//               );
-//           }
-//       } catch (error) {
-//           if (DocumentPicker.isCancel(error)) {
-//               Alert.alert(
-//                   'Peringatan!',
-//                   'Gambar batal diunggah.',
-//                   ['OKE'],
-//               );
-//           } else {
-//               console.log(error);
-//           }
-//       }
-//   };
 
   let refEmail, refPassword, refRepeatPassword;
 
@@ -81,34 +50,6 @@ const Register = () => {
             </Text>
           </Layout>
           <Layout style={styles.secondLayout} level="4">
-            {/* <Avatar
-              source={{
-                uri:
-                  uri ||
-                  'https://api.adorable.io/avatars/285' + email ||
-                  'abott@adorable.io' + '.png',
-              }}
-              style={{
-                width: 120,
-                height: 120,
-                alignSelf: 'center',
-              }}
-              shape="round"
-            />
-            <Button
-              style={{
-                width: 50,
-                margin: 10,
-                bottom: 50,
-                left: 170,
-                alignContent: 'auto',
-                alignItems: 'center',
-                borderRadius: 30,
-              }}
-              status="control"
-              accessoryRight={PlusIcon}
-              onPress={() => selectFile()}
-            /> */}
             <Input
               style={styles.input}
               autoCapitalize="none"

@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
         marginLeft: 20,
         width: Responsive.width(60),
         height: Responsive.height(60),
-        borderRadius: 60,
+        borderRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',

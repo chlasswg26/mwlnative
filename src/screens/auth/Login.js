@@ -30,7 +30,7 @@ const Login = () => {
     />
   );
 
-  let _emailInput, _passwordInput;
+  let _passwordInput;
 
   const _next = () => {
       _passwordInput && _passwordInput.focus();
@@ -51,7 +51,6 @@ const Login = () => {
           <Layout style={styles.secondLayout} level="4">
             <Input
               style={styles.inputEmail}
-              ref={ref => {_emailInput = ref}}
               autoCorrect={true}
               keyboardType='email-address'
               autoCapitalize="none"
