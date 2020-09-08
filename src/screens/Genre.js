@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
-import { List, Divider, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { Icon, TopNavigation, TopNavigationAction, Layout } from '@ui-kitten/components';
 import { useNavigation } from '@react-navigation/native';
-import ListItemSecondCustomized from '../components/ListItemSecondCustomized';
+import { ScrollView } from 'react-native';
+import { ListItemFourthCustomized } from '../components/ListItemFourthCustomized';
+import { styles } from '../styles/Genre';
 
 const BackIcon = (props) => (
     <Icon {...props} name='arrow-back' />
@@ -9,10 +11,6 @@ const BackIcon = (props) => (
 
 const Genre = ({ id }) => {
     const navigation = useNavigation();
-    const dataTwo = new Array(8).fill({
-        title: 'Title for Item',
-        description: 'Description for Item',
-    });
 
     const BackAction = () => (
         <TopNavigationAction
@@ -26,15 +24,22 @@ const Genre = ({ id }) => {
             <TopNavigation
                 accessoryLeft={BackAction}
                 title='Comedy'
-                subtitle='Daftar buku berdasarkan aliran comedy.'
+                subtitle='Daftar buku berdasarkan kategori comedy.'
                 alignment='center'
             />
-            <List
-                data={dataTwo}
-                showsVerticalScrollIndicator={false}
-                renderItem={({ item }) => <ListItemSecondCustomized item={item} />}
-                ItemSeparatorComponent={() => <Divider />}
-            />
+            <Layout
+                level='4'
+                style={styles.layout}>
+                <ScrollView
+                    style={styles.layout}
+                    contentContainerStyle={styles.contentContainer}
+                    showsVerticalScrollIndicator={false}>
+                        <ListItemFourthCustomized />
+                        <ListItemFourthCustomized />
+                        <ListItemFourthCustomized />
+                        <ListItemFourthCustomized />
+                </ScrollView>
+            </Layout>
         </Fragment>
     );
 };

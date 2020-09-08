@@ -1,19 +1,17 @@
 import React, { Fragment } from 'react';
-import { List, Divider, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { ListItemFourthCustomized } from '../components/ListItemFourthCustomized';
+import { TopNavigation, Icon, TopNavigationAction, Layout } from '@ui-kitten/components';
 import { useNavigation } from '@react-navigation/native';
-import ListItemSecondCustomized from '../components/ListItemSecondCustomized';
+import { ScrollView } from 'react-native';
+import { styles } from '../styles/Book';
 
 const MenuIcon = (props) => (
     <Icon {...props} name='menu-2' />
 );
 
-const Book = ({ id }) => {
+const Book = () => {
     const navigation = useNavigation();
-    const dataTwo = new Array(8).fill({
-        title: 'Title for Item',
-        description: 'Description for Item',
-    });
-
+    
     const MenuAction = () => (
         <TopNavigationAction
             icon={MenuIcon}
@@ -24,17 +22,24 @@ const Book = ({ id }) => {
     return (
         <Fragment>
             <TopNavigation
-                accessoryLeft={MenuAction}
                 title='Buku saya'
                 subtitle='Daftar buku yang dipinjam.'
                 alignment='center'
+                accessoryLeft={MenuAction}
             />
-            <List
-                data={dataTwo}
-                showsVerticalScrollIndicator={false}
-                renderItem={({ item }) => <ListItemSecondCustomized item={item} />}
-                ItemSeparatorComponent={() => <Divider />}
-            />
+            <Layout
+                level='4'
+                style={styles.layout}>
+                <ScrollView
+                    style={styles.layout}
+                    contentContainerStyle={styles.contentContainer}
+                    showsVerticalScrollIndicator={false}>
+                        <ListItemFourthCustomized />
+                        <ListItemFourthCustomized />
+                        <ListItemFourthCustomized />
+                        <ListItemFourthCustomized />
+                </ScrollView>
+            </Layout>
         </Fragment>
     );
 };

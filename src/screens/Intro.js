@@ -67,14 +67,18 @@ const Intro = ({ navigation: { replace } }) => {
         );
     };
 
-    const finishIntro = () => {
-        AsyncStorage.setItem('firstLanding', 'Landed', (error) => {
+    const finishIntro = async () => {
+      try {
+        await AsyncStorage.setItem('firstLanding', 'Landed', (error) => {
             if (error) {
                 console.log(error);
             } else {
                 replace('Home');
             }
         });
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     return (

@@ -91,7 +91,10 @@ const Search = () => {
                     data={dataTwo}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => <ListItemFirstCustomized item={item} />}
+                    keyExtractor={(item, index) => index.toString()}
                     ItemSeparatorComponent={() => <Divider />}
+                    initialNumToRender={3}
+                    onEndReachedThreshold={0.5}
                 />
             </Layout>
         </Fragment>

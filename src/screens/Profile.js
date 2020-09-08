@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import ListItemThirdCustomized from '../components/ListItemThirdCustomized';
 import { ScrollView, Alert, PermissionsAndroid } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
+import { styles } from '../styles/Profile';
 
 const BackIcon = (props) => (
     <Icon {...props} name='arrow-back' />
@@ -70,90 +71,52 @@ const Profile = () => {
 
     return (
         <Fragment>
-            <Layout level='4' style={{
-                flex: 1,
-                minHeight: 100,
-            }}>
+            <Layout
+                level='4'
+                style={styles.layout}>
                 <TopNavigation
                     title='Pengaturan'
                     alignment='center'
                     accessoryLeft={BackAction}
-                    style={{
-                        marginHorizontal: 10,
-                        marginTop: 10,
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
-                        borderBottomLeftRadius: 20,
-                        borderBottomRightRadius: 20,
-                    }}
+                    style={styles.topNavigation}
                 />
                 <Avatar
                     source={{
                         uri: uri || 'https://api.adorable.io/avatars/285/abott@adorable.png',
                     }}
                     shape='round'
-                    style={{
-                        width: 150,
-                        height: 150,
-                        alignSelf: 'center',
-                        margin: 20,
-                    }}
+                    style={styles.avatar}
                 />
                 <Button
                     accessoryLeft={CameraIcon}
                     appearance='filled'
                     status='basic'
-                    style={{
-                        alignSelf: 'center',
-                        marginHorizontal: 100,
-                        borderRadius: 30,
-                        width: 50,
-                        height: 50,
-                        bottom: 70,
-                        left: 50,
-                        marginBottom: -30,
-                    }}
+                    style={styles.buttonCamera}
                     onPress={() => selectFile()}
                 />
-                <Layout style={{
-                    flex: 1,
-                    marginHorizontal: 10,
-                    borderTopLeftRadius: 30,
-                    borderTopRightRadius: 30,
-                }}>
+                <Layout style={styles.secondLayout}>
                     <ScrollView
-                        style={{
-                            flex: 1,
-                            margin: 10,
-                        }}
+                        style={styles.scrollView}
                         showsVerticalScrollIndicator={false}>
                         <ListItemThirdCustomized
                             hint='Nama'
                             value='Ichlas Wardy Gustama'
-                            style={{
-                                margin: 10,
-                            }}
+                            style={styles.listItem}
                         />
                         <ListItemThirdCustomized
                             hint='Email'
                             value='Ichlas Wardy Gustama'
-                            style={{
-                                margin: 10,
-                            }}
+                            style={styles.listItem}
                         />
                         <ListItemThirdCustomized
                             hint='Status'
                             value='Ichlas Wardy Gustama'
-                            style={{
-                                margin: 10,
-                            }}
+                            style={styles.listItem}
                         />
                         <ListItemThirdCustomized
                             hint='Bergabung sejak'
                             value='Ichlas Wardy Gustama'
-                            style={{
-                                margin: 10,
-                            }}
+                            style={styles.listItem}
                         />
                     </ScrollView>
                     <Button
@@ -161,12 +124,7 @@ const Profile = () => {
                         appearance='filled'
                         status='danger'
                         size='large'
-                        style={{
-                            alignSelf: 'center',
-                            marginBottom: 10,
-                            marginHorizontal: 100,
-                            borderRadius: 10,
-                        }}>
+                        style={styles.buttonLogout}>
                         Keluar
                     </Button>
                 </Layout>

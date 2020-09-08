@@ -1,15 +1,20 @@
 import React, { Fragment } from 'react';
-import { ListItem, Text, Button, Icon } from '@ui-kitten/components';
+import { ListItem, Text, Button, Avatar } from '@ui-kitten/components';
 import { ImageBackground } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { styles } from '../styles/ListItemSecondCustomized';
 
-const ArrowIcon = (props) => (
-  <Icon {...props} name='arrow-circle-right' />
-);
-
 const ListItemSecondCustomized = ({ item }) => {
-  const navigation = useNavigation();
+
+  const UserThumbnail = () => (
+    <Avatar
+      shape='round'
+      size='tiny'
+      source={{
+        uri: 'https://source.unsplash.com/random'
+      }}
+      style={styles.avatar}
+    />
+  );
 
   return (
     <ListItem
@@ -23,17 +28,21 @@ const ListItemSecondCustomized = ({ item }) => {
         <Fragment>
           <Text
             {...evaProps}
-            category='c1'
+            category='label'
             style={styles.listItemDescription}
             numberOfLines={3}>
-            {item.description}
+              Sedang dipinjam oleh:
             </Text>
 
           <Button
-            onPress={() => navigation.navigate('Detail')}
             style={styles.listItemButton}
-            accessoryLeft={ArrowIcon}
-          />
+            size='tiny'
+            appearance='ghost'
+            status='danger'
+            accessoryLeft={UserThumbnail}
+            touchSoundDisabled={true}>
+              Ichlas Wardy Gustama
+            </Button>
         </Fragment>
       )}
       accessoryLeft={() => (

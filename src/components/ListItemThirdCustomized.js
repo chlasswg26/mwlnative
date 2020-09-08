@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Layout, Text, Divider } from '@ui-kitten/components';
+import { styles } from '../styles/ListItemThirdCustomized';
 
 const ListItemThirdCustomized = (
     {
@@ -19,12 +20,7 @@ const ListItemThirdCustomized = (
                 <Text
                     category='s2'
                     numberOfLines={1}
-                    style={{
-                        textAlign: 'right',
-                        bottom: 20,
-                        marginLeft: 150,
-                        fontWeight: 'bold',
-                    }}>
+                    style={styles.textValue}>
                     { value }
                 </Text>
                 <Divider />

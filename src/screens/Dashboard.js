@@ -102,12 +102,18 @@ const Dashboard = ({ navigation: { navigate } }) => {
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     renderItem={renderItem}
+                    keyExtractor={(item, index) => index.toString()}
+                    initialNumToRender={5}
+                    onEndReachedThreshold={0.5}
                 />
                 <List
                     data={data}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     renderItem={renderItemGenre}
+                    keyExtractor={(item, index) => index.toString()}
+                    initialNumToRender={5}
+                    onEndReachedThreshold={0.5}
                 />
             </Layout>
             <Layout style={styles.secondLayout}>
@@ -116,7 +122,10 @@ const Dashboard = ({ navigation: { navigate } }) => {
                     horizontal={false}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => <ListItemFirstCustomized item={item} />}
+                    keyExtractor={(item, index) => index.toString()}
                     ItemSeparatorComponent={Divider}
+                    initialNumToRender={3}
+                    onEndReachedThreshold={0.5}
                 />
             </Layout>
         </Fragment>

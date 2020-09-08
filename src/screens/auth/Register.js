@@ -61,7 +61,6 @@ const Register = () => {
               value={name}
               onChangeText={setName}
               onSubmitEditing={nextToEmail}
-              blurOnSubmit={false}
             />
             <Input
               style={styles.input}
@@ -78,7 +77,6 @@ const Register = () => {
               value={email}
               onChangeText={setEmail}
               onSubmitEditing={nextToPassword}
-              blurOnSubmit={false}
             />
             <Input
               style={styles.input}
@@ -95,7 +93,6 @@ const Register = () => {
               secureTextEntry={true}
               onChangeText={setPassword}
               onSubmitEditing={nextToRepeatPassword}
-              blurOnSubmit={true}
             />
             <Input
               style={styles.input}
@@ -111,7 +108,6 @@ const Register = () => {
               value={repeatPassword}
               secureTextEntry={true}
               onChangeText={setRepeatPassword}
-              blurOnSubmit={true}
             />
             <Button
               style={styles.buttonRegister}

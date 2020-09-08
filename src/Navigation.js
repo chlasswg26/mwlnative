@@ -11,6 +11,7 @@ import Intro from './screens/Intro';
 import Connection from './screens/Connection';
 import Login from './screens/auth/Login';
 import Register from './screens/auth/Register';
+import Verify from './screens/auth/Verify';
 import Dashboard from './screens/Dashboard';
 import Search from './screens/Search';
 import Genre from './screens/Genre';
@@ -68,7 +69,7 @@ const Navigation = () => {
                     <Screen name='Login' component={Login} />
                     <Screen name='Register' component={Register} />
                     <Screen name='Home' component={DrawerLayout} />
-                    {/* <Screen name='Verify' component={Verify} /> */}
+                    <Screen name='Verify' component={Verify} />
                     {/* <Screen name='Dashboard' component={Dashboard} /> */}
                 </Fragment>
             </Navigator>

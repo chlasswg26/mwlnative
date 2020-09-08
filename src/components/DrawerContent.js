@@ -35,10 +35,13 @@ const SunIcon = (props) => {
     return <Icon {...props} name='sun' />;
 };
 const MoonIcon = (props) => {
-    return <Icon {...props} name='moon' />;
+    return <Icon {...props} name='moon-outline' />;
 };
 const CloseIcon = (props) => {
     return <Icon {...props} name='close' />;
+};
+const SettingIcon = (props) => {
+  return <Icon {...props} name='settings-outline' />;
 };
 
 export const DrawerContent = (props) => {
@@ -147,7 +150,7 @@ export const DrawerContent = (props) => {
     };
 
     const ToggleMenu = () => {
-        return <Toggle checked={toggle} onChange={() => handleToggle()} />;
+        return <Toggle checked={toggle} onChange={() => handleToggle()} status='info' />;
     };
 
     const SiteLogo = () => {
@@ -275,6 +278,12 @@ export const DrawerContent = (props) => {
                   accessoryLeft={toggle ? MoonIcon : !toggle && SunIcon}
                   accessoryRight={ToggleMenu}
                 />
+                <DrawerItem
+                  title="Pengaturan"
+                  accessoryLeft={SettingIcon}
+                  style={styles.drawerNested}
+                  onPress={() => props.navigation.navigate('Profile')}
+                />
               </Layout>
             </Layout>
           </DrawerContentScrollView>
@@ -283,7 +292,7 @@ export const DrawerContent = (props) => {
             title="Keluar"
             accessoryLeft={LogoutIcon}
             style={styles.bottomDrawerSection}
-            onPress={() => props.navigation.navigate('Login')}
+            onPress={() => props.navigation.navigate('Verify')}
           />
         </Layout>
       </Fragment>

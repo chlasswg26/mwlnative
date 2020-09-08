@@ -30,10 +30,10 @@ const Login = () => {
     />
   );
 
-  let _passwordInput;
+  let refPassword;
 
-  const _next = () => {
-      _passwordInput && _passwordInput.focus();
+  const nextToPassword = () => {
+      refPassword && refPassword.focus();
   };
 
   return (
@@ -61,12 +61,11 @@ const Login = () => {
               accessoryRight={UserIcon}
               value={email}
               onChangeText={setEmail}
-              onSubmitEditing={_next}
-              blurOnSubmit={false}
+              onSubmitEditing={nextToPassword}
             />
             <Input
               style={styles.inputPassword}
-              ref={ref => {_passwordInput = ref}}
+              ref={ref => {refPassword = ref}}
               autoCapitalize="none"
               autoCompleteType="password"
               placeholder="Masukkan kata sandi"
@@ -76,7 +75,6 @@ const Login = () => {
               value={password}
               secureTextEntry={!passwordVisible}
               onChangeText={setPassword}
-              blurOnSubmit={true}
             />
             <Button
               style={styles.buttonLogin}

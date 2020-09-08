@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         left: 10,
         marginRight: 5,
-        fontSize: Responsive.font(15),
+        fontSize: Responsive.font(18),
         fontStyle: 'italic',
         textTransform: 'capitalize',
     },
@@ -20,17 +20,17 @@ export const styles = StyleSheet.create({
         bottom: 35,
         left: 15,
         marginRight: 10,
-        textTransform: 'lowercase',
+        textTransform: 'uppercase',
     },
     listItemButton: {
-        marginLeft: 20,
-        width: Responsive.width(60),
-        height: Responsive.height(60),
-        borderRadius: 30,
+        width: Responsive.width(200),
+        height: Responsive.height(30),
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
         alignSelf: 'center',
+        backgroundColor: 'transparent',
     },
     listItemAccessoryLeft: {
         width: Responsive.width(120),
@@ -39,5 +39,8 @@ export const styles = StyleSheet.create({
     listItemAccessoryImage: {
         resizeMode: 'cover',
         borderRadius: 5,
+    },
+    avatar: {
+        marginRight: 10,
     },
 });
