@@ -4,32 +4,35 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { View, Text, Image } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { styles } from '../styles/Intro';
+import { SITE_NAME } from '@env';
 
 const slides = [
-    {
-        key: 'one',
-        title: 'Selamat Datang',
-        text: 'Hai, selamat datang di Most Wanted Library (MWLibrary).',
-        image: require('../images/3255469.jpg'),
-    },
-    {
-        key: 'two',
-        title: 'Eksplorasi',
-        text: 'Jelajahi pengetahuan baru dari buku-buku yang membuat wawasan kamu jadi luas.',
-        image: require('../images/3255309.jpg'),
-    },
-    {
-        key: 'three',
-        title: 'Fitur',
-        text: 'Didukung fitur yang sangat mudah dipahami, mulai dari meminjam buku keren dan melihat riwayat transaksi.',
-        image: require('../images/3544858.jpg'),
-    },
-    {
-        key: 'four',
-        title: 'Mulai',
-        text: 'Ayo mulai sekarang juga!',
-        image: require('../images/3593987.jpg'),
-    },
+  {
+    key: 'one',
+    title: 'Selamat Datang',
+    text: `Hai, selamat datang di Most Wanted Library (${SITE_NAME}).`,
+    image: require('../images/3255469.jpg'),
+  },
+  {
+    key: 'two',
+    title: 'Eksplorasi',
+    text:
+      'Jelajahi pengetahuan baru dari buku-buku yang membuat wawasan kamu jadi luas.',
+    image: require('../images/3255309.jpg'),
+  },
+  {
+    key: 'three',
+    title: 'Fitur',
+    text:
+      'Didukung fitur yang sangat mudah dipahami, mulai dari meminjam buku keren dan melihat riwayat transaksi.',
+    image: require('../images/3544858.jpg'),
+  },
+  {
+    key: 'four',
+    title: 'Mulai',
+    text: 'Ayo mulai sekarang juga!',
+    image: require('../images/3593987.jpg'),
+  },
 ];
 
 const Intro = ({ navigation: { replace } }) => {

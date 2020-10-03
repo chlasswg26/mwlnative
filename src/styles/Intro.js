@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   image: {
     width: Responsive.width(320),
     height: Responsive.height(320),
-    marginVertical: 32,
+    marginVertical: Responsive.height(32),
   },
   text: {
     color: 'rgba(255, 255, 255, 0.8)',
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     width: Responsive.width(44),
     height: Responsive.height(44),
     backgroundColor: 'rgba(0, 0, 0, .2)',
-    borderRadius: 22,
+    borderRadius: Responsive.width(22),
     justifyContent: 'center',
     alignItems: 'center',
   },

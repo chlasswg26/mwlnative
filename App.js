@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
@@ -7,6 +7,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import Navigation from './src/Navigation';
 import { ThemeContext } from './src/context/theme-context';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
+import Reactotron, { overlay } from 'reactotron-react-native';
 
 const App = () => {
   const [theme, setTheme] = useState('light');
@@ -42,12 +45,16 @@ const App = () => {
     <Fragment>
       <IconRegistry icons={EvaIconsPack} />
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <ApplicationProvider {...eva} theme={eva[theme]}>
-          <Navigation />
-        </ApplicationProvider>
+        <Provider store={store}>
+          <ApplicationProvider {...eva} theme={eva[theme]}>
+            <Navigation />
+          </ApplicationProvider>
+        </Provider>
       </ThemeContext.Provider>
     </Fragment>
   );
 };
 
-export default App;
+const MyAppWithBenefits = Reactotron.overlay(App);
+
+export default MyAppWithBenefits;

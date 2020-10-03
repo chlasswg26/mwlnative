@@ -7,10 +7,10 @@ const ListItemSecondCustomized = ({ item }) => {
 
   const UserThumbnail = () => (
     <Avatar
-      shape='round'
-      size='tiny'
+      shape="round"
+      size="tiny"
       source={{
-        uri: 'https://source.unsplash.com/random'
+        uri: 'https://source.unsplash.com/random',
       }}
       style={styles.avatar}
     />
@@ -18,37 +18,41 @@ const ListItemSecondCustomized = ({ item }) => {
 
   return (
     <ListItem
-      title={evaProps => <Text
-        {...evaProps}
-        category='label'
-        numberOfLines={2}
-        style={styles.listItemTitle}>{item.title}</Text>}
+      title={(evaProps) => (
+        <Text
+          {...evaProps}
+          category="label"
+          numberOfLines={2}
+          style={styles.listItemTitle}>
+          {item.title} Nice
+        </Text>
+      )}
       style={styles.listItem}
-      description={evaProps => (
+      description={(evaProps) => (
         <Fragment>
           <Text
             {...evaProps}
-            category='label'
+            category="label"
             style={styles.listItemDescription}
             numberOfLines={3}>
-              Sedang dipinjam oleh:
-            </Text>
+            Sedang dipinjam oleh:
+          </Text>
 
           <Button
             style={styles.listItemButton}
-            size='tiny'
-            appearance='ghost'
-            status='danger'
+            size="tiny"
+            appearance="ghost"
+            status="danger"
             accessoryLeft={UserThumbnail}
             touchSoundDisabled={true}>
-              Ichlas Wardy Gustama
-            </Button>
+            Ichlas Wardy Gustama
+          </Button>
         </Fragment>
       )}
       accessoryLeft={() => (
         <ImageBackground
           source={{
-            uri: item.image,
+            uri: item.image || 'https://source.unsplash.com/random',
           }}
           style={styles.listItemAccessoryLeft}
           imageStyle={styles.listItemAccessoryImage}

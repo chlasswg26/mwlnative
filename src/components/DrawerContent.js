@@ -18,6 +18,7 @@ import { ThemeContext } from '../context/theme-context';
 import AsyncStorage from '@react-native-community/async-storage';
 import ModalLoading from './ModalLoading';
 import { useNavigation } from '@react-navigation/native';
+import { SITE_NAME } from '@env';
 
 const LogoutIcon = (props) => {
     return <Icon {...props} name='log-out-outline' />;
@@ -192,7 +193,7 @@ export const DrawerContent = (props) => {
                 <TopNavigation
                   title={(evaProps) => (
                     <Text {...evaProps} style={styles.textLogo}>
-                      MWLibrary
+                      {SITE_NAME}
                     </Text>
                   )}
                   accessoryLeft={SiteLogo}
@@ -206,9 +207,7 @@ export const DrawerContent = (props) => {
                     <Avatar
                       source={{
                         uri:
-                          'https://api.adorable.io/avatars/285' +
-                          'abott@adorable.io' +
-                          '.png',
+                          'https://api.adorable.io/avatars/285abott@adorable.io.png',
                       }}
                       ImageComponent={ImageBackground}
                       size="giant"
@@ -292,7 +291,7 @@ export const DrawerContent = (props) => {
             title="Keluar"
             accessoryLeft={LogoutIcon}
             style={styles.bottomDrawerSection}
-            onPress={() => props.navigation.navigate('Verify')}
+            onPress={() => props.navigation.navigate('Register')}
           />
         </Layout>
       </Fragment>

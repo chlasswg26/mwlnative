@@ -1,12 +1,13 @@
 import Axios from 'axios';
+import { SITE_ENDPOINT } from '@env';
 
-const BACKEND = process.env.REACT_APP_API_URL;
-const AUTH_ENDPOINT = BACKEND + '/auth';
-const BOOK_ENDPOINT = BACKEND + '/book';
-const AUTHOR_ENDPOINT = BACKEND + '/author';
-const GENRE_ENDPOINT = BACKEND + '/genre';
-const USER_ENDPOINT = BACKEND + '/user';
-const HISTORY_ENDPOINT = BACKEND + '/history';
+const BACKEND = SITE_ENDPOINT;
+const AUTH_ENDPOINT = `${BACKEND}/auth`;
+const BOOK_ENDPOINT = `${BACKEND}/book`;
+const AUTHOR_ENDPOINT = `${BACKEND}/author`;
+const GENRE_ENDPOINT = `${BACKEND}/genre`;
+const USER_ENDPOINT = `${BACKEND}/user`;
+const HISTORY_ENDPOINT = `${BACKEND}/history`;
 
 export const registerUser = (body) => {
   return Axios.post(`${AUTH_ENDPOINT}/register`, body);

@@ -3,6 +3,7 @@ import { StatusBar, ImageBackground } from 'react-native';
 import { Avatar, Layout, Text } from '@ui-kitten/components';
 import AsyncStorage from '@react-native-community/async-storage';
 import { styles } from '../styles/Splash';
+import { SITE_NAME } from '@env';
 
 const Splash = ({ navigation: { replace } }) => {
     useEffect(() => {
@@ -28,17 +29,17 @@ const Splash = ({ navigation: { replace } }) => {
     }, []);
 
     return (
-        <Fragment>
-            <StatusBar hidden={true} showHideTransition='slide' />
-            <Layout style={styles.viewStyles}>
-                <Avatar
-                    source={require('../images/web_hi_res_512.png')}
-                    ImageComponent={ImageBackground}
-                    style={styles.image}
-                />
-                <Text style={styles.textStyles}>📚 MWLibrary 📚</Text>
-            </Layout>
-        </Fragment>
+      <Fragment>
+        <StatusBar hidden={true} showHideTransition="slide" />
+        <Layout style={styles.viewStyles}>
+          <Avatar
+            source={require('../images/web_hi_res_512.png')}
+            ImageComponent={ImageBackground}
+            style={styles.image}
+          />
+          <Text style={styles.textStyles}>📚 {SITE_NAME} 📚</Text>
+        </Layout>
+      </Fragment>
     );
 };
 

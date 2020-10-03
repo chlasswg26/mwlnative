@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Layout, Avatar, TopNavigation, TopNavigationAction, Icon, Button } from '@ui-kitten/components';
+import { Layout, Avatar, TopNavigation, TopNavigationAction, Icon, Button, Modal } from '@ui-kitten/components';
 import { useNavigation } from '@react-navigation/native';
 import ListItemThirdCustomized from '../components/ListItemThirdCustomized';
 import { ScrollView, Alert, PermissionsAndroid } from 'react-native';
@@ -15,15 +15,26 @@ const CameraIcon = (props) => (
 const LogoutIcon = (props) => (
     <Icon {...props} name='log-out' />
 );
+const EditIcon = (props) => (
+    <Icon {...props} name='edit' />
+);
 
 const Profile = () => {
     const navigation = useNavigation();
     const [uri, setUri] = useState();
+    const [show, setShow] = useState(false);
 
     const BackAction = () => (
         <TopNavigationAction
             icon={BackIcon}
             onPress={() => navigation.goBack()}
+        />
+    );
+
+    const EditAction = () => (
+        <TopNavigationAction
+            icon={EditIcon}
+            onPress={() => setShow(true)}
         />
     );
 
@@ -78,6 +89,7 @@ const Profile = () => {
                     title='Pengaturan'
                     alignment='center'
                     accessoryLeft={BackAction}
+                    accessoryRight={EditAction}
                     style={styles.topNavigation}
                 />
                 <Avatar
@@ -127,6 +139,12 @@ const Profile = () => {
                         style={styles.buttonLogout}>
                         Keluar
                     </Button>
+                    
+                    <Modal
+                        visible={show}
+                        onBackdropPress={() => setShow(true)}>
+                        <Button />
+                    </Modal>
                 </Layout>
             </Layout>
         </Fragment>

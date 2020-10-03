@@ -26,7 +26,7 @@ import { DrawerContent } from './components/DrawerContent';
 
 const DrawerLayout = () => {
     const { height, width } = useWindowDimensions();
-    
+
     useEffect(() => {
         if (width > height) {
             return Alert.alert(

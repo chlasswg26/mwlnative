@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useCallback, useState } from 'react';
-import { ToastAndroid, BackHandler, ImageBackground } from 'react-native';
+import { ToastAndroid, BackHandler, ImageBackground, RefreshControl } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useFocusEffect } from '@react-navigation/native';
 import ModalBackPress from '../components/ModalBackPress';
@@ -7,10 +7,18 @@ import LeftTop from '../layouts/LeftTop';
 import { Layout, Text, List, ListItem, Divider } from '@ui-kitten/components';
 import { styles } from '../styles/Dashboard';
 import ListItemFirstCustomized from '../components/ListItemFirstCustomized';
+import { useSelector, useDispatch } from 'react-redux';
+import { getBookActionCreator, getBookByFilterActionCreator } from '../redux/actions/book';
+import { SITE_ENDPOINT, SITE_NAME } from '@env';
 
 const Dashboard = ({ navigation: { navigate } }) => {
     const [isClose, setIsClose] = useState(false);
+    const [isRefresh, setIsRefresh] = useState(false);
+    const [params, setParams] = useState({
+      limit: 1,
+    });
     const netInfo = useNetInfo();
+    const dispatch = useDispatch();
 
     const handleBackPress = (value) => {
         setIsClose(value);
@@ -22,7 +30,7 @@ const Dashboard = ({ navigation: { navigate } }) => {
         } else {
             if (netInfo.isConnected && netInfo.details.strength < 50) {
                 ToastAndroid.showWithGravityAndOffset(
-                  'Koneksi ' + netInfo.type + ' ' + netInfo.details.ssid + ' tidak stabil',
+                  `Koneksi ${netInfo.type} ${netInfo.details.ssid} tidak stabil`,
                   ToastAndroid.LONG,
                   ToastAndroid.TOP,
                   25,
@@ -52,27 +60,44 @@ const Dashboard = ({ navigation: { navigate } }) => {
         }, [])
     );
 
-    const data = new Array(8).fill({
-      title: 'Item' + Math.random(),
-    });
+    const { responseBook, responseBookByFilter } = useSelector(state => state.book);
 
-    const dataTwo = new Array(8).fill({
-      title: 'Title for Item',
-      description: 'Description for Item',
-    });
+    useEffect(() => {
+        dispatch(getBookActionCreator());
+        dispatch(getBookByFilterActionCreator('', params));
+    }, []);
+    
+    const wait = (timeout) => {
+        return new Promise(resolve => {
+            setTimeout(resolve, timeout);
+        });
+    }
 
-    const renderItem = ({ item }) => (
-        <ListItem
-            style={styles.listItemCarousel}
-            onPress={() => console.log(item.title)}>
-            <ImageBackground
-                source={{
-                    uri: item.image,
-                }}
-                style={styles.listItemChild}
-                imageStyle={styles.listItemChildImage}
-            />
-        </ListItem>
+    const dispatchRefresh = useCallback(() => {
+        setIsRefresh(true);
+        setParams({
+          limit: 2,
+        });
+
+        wait(2000).then(() => {
+            setIsRefresh(false);
+            dispatch(getBookActionCreator());
+            dispatch(getBookByFilterActionCreator('', params));
+        });
+    }, []);
+
+    const renderItem = ({item}) => (
+      <ListItem
+        style={styles.listItemCarousel}
+        onPress={() => console.log(item.id)}>
+        <ImageBackground
+          source={{
+            uri: `${SITE_ENDPOINT}/images/${item.image}`,
+          }}
+          style={styles.listItemChild}
+          imageStyle={styles.listItemChildImage}
+        />
+      </ListItem>
     );
 
     const renderItemGenre = ({ item }) => (
@@ -82,53 +107,57 @@ const Dashboard = ({ navigation: { navigate } }) => {
                 <Text
                     category='h5'
                     numberOfLines={1}>
-                        Action
+                        {item.genre}
                 </Text>
         </ListItem>
     );
 
     return (
-        <Fragment>
-            { isClose &&
-                <ModalBackPress isVisible={isClose} setIsVisible={handleBackPress}  />
+      <Fragment>
+        {isClose && (
+          <ModalBackPress isVisible={isClose} setIsVisible={handleBackPress} />
+        )}
+        <LeftTop />
+        <Layout style={styles.firstLayout}>
+          <Text style={styles.layoutBadgeText}>{SITE_NAME}</Text>
+          <List
+            data={responseBook}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id.toString()}
+            initialNumToRender={5}
+            onEndReachedThreshold={10}
+          />
+          <List
+            data={responseBook}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            renderItem={renderItemGenre}
+            keyExtractor={(item) => item.id.toString()}
+            initialNumToRender={5}
+            onEndReachedThreshold={10}
+          />
+        </Layout>
+        <Layout style={styles.secondLayout}>
+          <List
+            data={responseBookByFilter}
+            horizontal={false}
+            showsVerticalScrollIndicator={false}
+            renderItem={({item}) => <ListItemFirstCustomized item={item} />}
+            keyExtractor={(item) => item.id.toString()}
+            ItemSeparatorComponent={Divider}
+            initialNumToRender={3}
+            onEndReachedThreshold={10}
+            refreshControl={
+              <RefreshControl
+                refreshing={isRefresh}
+                onRefresh={dispatchRefresh}
+              />
             }
-            <LeftTop />
-            <Layout style={styles.firstLayout}>
-                <Text style={styles.layoutBadgeText}>
-                    MWLibrary
-                </Text>
-                <List
-                    data={data}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={renderItem}
-                    keyExtractor={(item, index) => index.toString()}
-                    initialNumToRender={5}
-                    onEndReachedThreshold={0.5}
-                />
-                <List
-                    data={data}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={renderItemGenre}
-                    keyExtractor={(item, index) => index.toString()}
-                    initialNumToRender={5}
-                    onEndReachedThreshold={0.5}
-                />
-            </Layout>
-            <Layout style={styles.secondLayout}>
-                <List
-                    data={dataTwo}
-                    horizontal={false}
-                    showsVerticalScrollIndicator={false}
-                    renderItem={({ item }) => <ListItemFirstCustomized item={item} />}
-                    keyExtractor={(item, index) => index.toString()}
-                    ItemSeparatorComponent={Divider}
-                    initialNumToRender={3}
-                    onEndReachedThreshold={0.5}
-                />
-            </Layout>
-        </Fragment>
+          />
+        </Layout>
+      </Fragment>
     );
 };
 

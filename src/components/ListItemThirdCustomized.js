@@ -23,7 +23,7 @@ const ListItemThirdCustomized = (
                     style={styles.textValue}>
                     { value }
                 </Text>
-                <Divider />
+                <Divider style={styles.divider} />
             </Layout>
         </Fragment>
     );
